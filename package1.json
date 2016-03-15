@@ -18,7 +18,7 @@
       }
     },
     "start-dev-api": {
-      "command": "nodemon",
+      "command": ".\\node_modules\\.bin\\babel-node --presets es2015,stage-0 server.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "development",
@@ -41,7 +41,6 @@
     "better-npm-run": "0.0.8",
     "body-parser": "^1.15.0",
     "concurrently": "^2.0.0",
-    "dateformat": "^1.0.12",
     "draft-js": "^0.2.2",
     "events": "^1.1.0",
     "express": "^4.13.4",

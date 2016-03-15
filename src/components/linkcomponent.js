@@ -9,3 +9,21 @@ export default class LinkComponent extends React.Component {
 
 	}
 }
+
+export class PlanningLinkComponent extends React.Component {
+	render() {
+		let url ="/planning/edit/" + this.props.rowData.UIC;
+		//console.log(url);
+    	return (<Link to={url}>{this.props.data}</Link>)
+
+	}
+}
+
+export class UICLinkComponent extends React.Component {
+	render() {
+		let url ="/planning/edit/" + this.props.rowData.UIC;
+		//console.log(url);
+    	return (<Link to={url}>{this.props.data}</Link>)
+
+	}
+}

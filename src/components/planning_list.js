@@ -3,12 +3,52 @@ import { connect} from 'react-redux';
 import { fetchPlanning } from '../actions/index';
 import { Link} from 'react-router';
 import Griddle from 'griddle-react';
-import LinkComponent from './linkcomponent';
+import {PlanningLinkComponent} from './linkcomponent';
+import NiceDate from './nice_date';
 
 
 class PlanningList extends Component {
     componentWillMount() {
         this.props.fetchPlanning();
+    }
+columnMetaData() {
+        return ([/*{
+            "columnName": "UIC",
+            "order": 1,
+            "locked": true,
+            "displayName": "Id",
+             "customComponent": PlanningLinkComponent
+        }, */{
+            "columnName": "company_name",
+            "order": 2,
+            "locked": true,
+            "displayName": "Customer",
+            "customComponent": PlanningLinkComponent
+        }, {
+            "columnName": "company_id",
+            "order": 3,
+            "locked": true,
+            "displayName": "Customer#",
+            // "customComponent": LinkComponent
+        }, {
+            "columnName": "team_member",
+            "order": 4,
+            "locked": true,
+            "displayName": "WorkedOnBy",
+            // "customComponent": LinkComponent
+        }, {
+            "columnName": "action_changed_date",
+            "order": 4,
+            "locked": true,
+            "displayName": "ChangedOn",
+            "customComponent": NiceDate
+        }, {
+            "columnName": "action",
+            "order": 4,
+            "locked": true,
+            "displayName": "Status",
+           // "customComponent": NiceDate
+        }])
     }
 
     render() {
@@ -16,14 +56,15 @@ class PlanningList extends Component {
         return ( 
           <div className = "list-group col-md-6">
             <div className = "text-xs-right">
-              /*<Link to = "/accounts/new" className="btn btn-primary"> Add account </Link>*/
+              <Link to = "/planning/new" className="btn btn-primary"> Add Planning </Link>
         
               <Griddle resultsPerPage={20}
               	results = {this.props.plannings} 
+                columnMetadata={this.columnMetaData()} 
               	showSettings={true} 
               	showFilter={true} 
-              	columns = {["company_name","source","team_member","action","action_changed_date","plan","plan_date","linked_incident","free_text","isa3","company_id",]}
-/ >
+              	columns = {["UIC","company_name","company_id", "team_member", "action_changed_date", "action"]}
+                />
             </div>
       
          </div >

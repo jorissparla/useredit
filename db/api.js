@@ -79,13 +79,14 @@ isp_UIC: {
 }, {
     timestamps: false,
       freezeTableName: true,
+      hasTrigger: true,
       schema: 'isa',
   tablename: 't_planning' }
 );
 
 router.get('/isaplanning', (req, res) => {
 isaplanning.findAll({
-   order: [['isp_action_changed_date', 'DESC']],
+   order: [['isp_action_changed_date', 'DESC'], ['isp_action', 'DESC']],
   
   attributes: 
   [ 
@@ -110,6 +111,87 @@ isaplanning.findAll({
   });
 
 
+router.get('/isaplanning/:id', (req, res) => {
+    let p = req.params.id;
+    isaplanning.findAll({
+     
+  /*
+  attributes: 
+  [ 
+    ['isp_UIC','UIC'],
+    ['isp_datetime','datetime'],
+    ['isp_company_name','company_name'],
+    ['isp_source','source'],
+    ['isp_team_member','team_member'],
+    ['isp_action','action'],
+    ['isp_action_changed_date','action_changed_date'],
+    ['isp_plan','plan'],
+    ['isp_plan_date','plan_date'],
+    ['isp_linked_incident','linked_incident'],
+    ['isp_free_text','free_text'],
+    ['isp_isa3','isa3'],
+    ['isp_company_id','company_id']
+  ] ,*/
+      where: {
+          isp_UIC: p
+      }    
+    })
+    .then(function (data) {
+      res.send(data)})
+    .catch(function() 
+      {res.send("error")})
+  }
+);
+
+
+router.put('/isaplanning/', (req, res) => {
+    let p = req.body.isp_UIC;
+    let newpln = req.body;
+    console.log(req.body);
+    console.log('entered put request api', newpln)
+    isaplanning.findOne({
+      where: {
+          isp_UIC: p
+      }    
+    })
+  .then(function (isaplanning) {
+      //console.log('then:',isaplanning);
+      Object.assign(isaplanning, newpln);
+      console.log('isaplanning',isaplanning);
+      isaplanning.save()
+      .then (function(data) {
+        console.log('saved')
+        res.send(data);
+      })
+    })
+    .catch(function() 
+      {res.send("error")})
+  }
+);
+router.put('/isaplanning/:id', (req, res) => {
+    let p = req.body.isp_UIC;
+    let newpln = req.body;
+    console.log(req.body);
+    console.log('entered put request api', newpln)
+    isaplanning.findOne({
+      where: {
+          isp_UIC: p
+      }    
+    })
+  .then(function (isaplanning) {
+      console.log('then:',isaplanning);
+      Object.assign(isaplanning, newpln);
+      //console.log('account',account);
+      isaplanning.save()
+      .then (function(data) {
+        console.log('saved')
+        res.send(data);
+      })
+    })
+    .catch(function() 
+      {res.send("error")})
+  }
+);
 
 router.get('/', function(req, res) {
     res.send ("<h2>in api </h2>")

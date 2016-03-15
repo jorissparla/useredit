@@ -12,6 +12,9 @@ export const CLEAR_ACTIVE = 'users/ACTIVE';
 export const LANG_LIST = 'languages/LIST';
 export const REGIONS_LIST = 'regions/LIST';
 export const PLANNING_LIST = 'planning/LIST';
+export const PLANNING_SHOW = 'planning/SHOW';
+export const PLANNING_SAVE = 'planning/SAVE';
+
 
 
 
@@ -41,7 +44,7 @@ export const showAccount = (id) => {
 export const updateAccount = (props) => {
 	const request = axios.put(ROOT_URL+'/accounts/', props)
 		return {
-		type: ACCOUNT_SHOW,
+		type: ACCOUNT_SAVE,
 		payload: request
 	}
 
@@ -70,4 +73,22 @@ export const fetchPlanning = () => {
 		type: PLANNING_LIST,
 		payload: request
 	}
+}
+
+export const showPlanning = (id) => {
+	const request = axios.get(ROOT_URL+'/isaplanning/'+id);
+	return {
+		type: PLANNING_SHOW,
+		payload: request
+	}
+}
+
+export const updatePlanning = (props) => {
+	const request = axios.put(ROOT_URL+'/isaplanning/', props)
+		return {
+		type: PLANNING_SAVE,
+		payload: request
+	}
+
+
 }
