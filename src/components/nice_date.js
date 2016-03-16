@@ -11,10 +11,11 @@ export default class nice_date extends React.Component {
   }
 
   render() {
-    let nicedate=  dateFormat(this.props.rowData.action_changed_date,"dddd, mmmm dS, yyyy");
+    let fmtdate=  dateFormat(this.props.rowData.action_changed_date,"dddd, mmmm dS, yyyy");
     return (
 
-      <div>{nicedate}</div>
+      <div>{fmtdate}</div>
     )
   }
 }
+

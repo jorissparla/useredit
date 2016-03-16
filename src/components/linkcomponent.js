@@ -26,4 +26,11 @@ export class UICLinkComponent extends React.Component {
     	return (<Link to={url}>{this.props.data}</Link>)
 
 	}
+}export class IncidentLinkComponent extends React.Component {
+	render() {
+		let url ="https://www.inforxtreme.com/espublic/en/AnswerLinkDotNet/SoHo/cases/SoHocasedetails.aspx?FromDotNet=Yes&caseid=" + this.props.rowData.linked_incident;
+		//console.log(url);
+    	return (<a href={url} target="_blank">{this.props.data}</a>)
+
+	}
 }

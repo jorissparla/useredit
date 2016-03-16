@@ -3,7 +3,7 @@ import {reduxForm} from 'redux-form';
 import { showPlanning , updatePlanning} from '../actions/index';
 
 
-export const fields = ["isp_UIC","isp_company_id", "isp_company_name", "isp_free_text"]
+export const fields = ["isp_UIC","isp_company_id", "isp_company_name", "isp_free_text", "isp_team_member","isp_action","isp_linked_incident"]
 const possibleRegions = ['EMEA','NA','APJ','GLB', 'M3'];
 
 
@@ -63,9 +63,26 @@ export default class PlanningEdit extends React.Component {
 	  				<input disabled type="text"  {...isp_company_id}/>
 	  			</div>
           <div className="row">
+            <div className="col s4">
+            <i className="material-icons prefix">account_circle</i>
+                <label>Member</label>
+                <input type="text" placeholder="Member" {...isp_team_member}/>
+            </div>
+            <div className="col s4">
+              <i className="material-icons prefix">account_circle</i>
+              <label>Incident</label>          
+              <input type="text" placeholder="Incident" {...isp_linked_incident}/>
+            </div>
+            <div className="col s3" >
+            <i className="material-icons prefix">supervisor_account</i>
+              <label>Action</label>
+              <input type="text" placeholder="Action" {...isp_action}/>
+            </div>  
+          </div>
+          <div className="row">
             <div className="col s12">
             <label>remarks</label>
-            <textarea name="a" id="a2323" cols="30" rows="10" className="materialize-textarea" {...isp_free_text}/>
+            <textarea name="a" id="a2323" cols="30" rows="20" className="materialize-textarea" {...isp_free_text}/>
             </div>
 
           </div>

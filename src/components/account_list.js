@@ -4,7 +4,7 @@ import { fetchAccounts }
 from '../actions/index';
 import { Link} from 'react-router';
 import Griddle from 'griddle-react';
-import LinkComponent from './linkcomponent';
+import {LinkComponent} from './linkcomponent';
 
 
 class AccountList extends Component {

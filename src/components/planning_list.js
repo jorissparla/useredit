@@ -3,9 +3,8 @@ import { connect} from 'react-redux';
 import { fetchPlanning } from '../actions/index';
 import { Link} from 'react-router';
 import Griddle from 'griddle-react';
-import {PlanningLinkComponent} from './linkcomponent';
+import {PlanningLinkComponent, IncidentLinkComponent} from './linkcomponent';
 import NiceDate from './nice_date';
-
 
 class PlanningList extends Component {
     componentWillMount() {
@@ -37,6 +36,12 @@ columnMetaData() {
             "displayName": "WorkedOnBy",
             // "customComponent": LinkComponent
         }, {
+            "columnName": "linked_incident",
+            "order": 4,
+            "locked": true,
+            "displayName": "Incident",
+            "customComponent": IncidentLinkComponent
+        },{
             "columnName": "action_changed_date",
             "order": 4,
             "locked": true,
@@ -63,7 +68,7 @@ columnMetaData() {
                 columnMetadata={this.columnMetaData()} 
               	showSettings={true} 
               	showFilter={true} 
-              	columns = {["UIC","company_name","company_id", "team_member", "action_changed_date", "action"]}
+              	columns = {["UIC","company_name","company_id", "team_member", "linked_incident","action_changed_date", "action"]}
                 />
             </div>
       
